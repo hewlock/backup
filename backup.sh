@@ -51,9 +51,9 @@ if [ "$RSYNC_STATUS" = 0 ] || [ "$RSYNC_STATUS" = 24 ]; then
 		notify "Initial backup complete to \"$TARGET_DIR\""
 	fi
 	
-	TIMESTAMP_DIR="$TARGET_DIR/$(date "+%Y-%m-%dT%H-%M-%S")"
-	mv $IN_PROGRESS_DIR $TIMESTAMP_DIR
-	ln -s $TIMESTAMP_DIR $LATEST_DIR
+	TIMESTAMP=$(date "+%Y-%m-%dT%H-%M-%S")
+	mv $IN_PROGRESS_DIR $TARGET_DIR/$TIMESTAMP
+	ln -s ./$TIMESTAMP $LATEST_DIR
 else
 	error "rsync failed to sync to \"$TARGET_DIR\""
 	exit 1
